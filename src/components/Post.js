@@ -1,9 +1,14 @@
+import { useState } from "react";
 import Image from "./Image";
 // import Text from "./Text";
 import Video from "./Video";
 
 const Post = ({ post }) => {
   const isMediaAvailable = post.type && post.media;
+
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleShowMore = () => {};
 
   return (
     <div className="w-1/3 rounded-md border m-4 bg-white shadow-md">
@@ -17,7 +22,17 @@ const Post = ({ post }) => {
         </div>
       </div>
       <div className="mt-2 px-2 pb-1">
-        <p>{post.text}</p>
+        <p>
+          {showMore ? post.text : post.text.slice(0, 100)}
+          {post.text.length > 100 && (
+            <span
+              onClick={() => setShowMore(!showMore)}
+              className="cursor-pointer text-blue-500"
+            >
+              {showMore ? " Show Less" : " Show More"}
+            </span>
+          )}
+        </p>
       </div>
       {isMediaAvailable && (
         <div className="w-full">
