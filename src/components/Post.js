@@ -1,8 +1,10 @@
 import Image from "./Image";
-import Text from "./Text";
+// import Text from "./Text";
 import Video from "./Video";
 
 const Post = ({ post }) => {
+  const isMediaAvailable = post.type && post.media;
+
   return (
     <div className="w-1/3 rounded-md border m-4 bg-white shadow-md">
       <div className="flex flex-row items-center px-3 pt-2">
@@ -17,13 +19,15 @@ const Post = ({ post }) => {
       <div className="mt-2 px-2 pb-1">
         <p>{post.text}</p>
       </div>
-      <div className="w-full">
-        {post.type === "type/image" ? (
-          <Image src={post.media} />
-        ) : (
-          <Video src={post.media} />
-        )}
-      </div>
+      {isMediaAvailable && (
+        <div className="w-full">
+          {post.type === "type/image" ? (
+            <Image src={post.media} />
+          ) : (
+            <Video src={post.media} />
+          )}
+        </div>
+      )}
       <div className="flex justify-center items-center">
         <div className="flex-grow p-2">
           <div className="flex justify-center gap-2 items-center px-2">
