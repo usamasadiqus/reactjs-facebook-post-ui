@@ -25,12 +25,13 @@ const Post = ({ post }) => {
         <p>
           {showMore ? post.text : post.text.slice(0, 100)}
           {post.text.length > 100 && (
-            <span
+            <button
+              type="button"
               onClick={() => setShowMore(!showMore)}
               className="cursor-pointer text-blue-500"
             >
               {showMore ? " Show Less" : " Show More"}
-            </span>
+            </button>
           )}
         </p>
       </div>
