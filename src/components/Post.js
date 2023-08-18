@@ -4,11 +4,9 @@ import Image from "./Image";
 import Video from "./Video";
 
 const Post = ({ post }) => {
+  const [showFullText, setShowFullText] = useState(false);
+
   const isMediaAvailable = post.type && post.media;
-
-  const [showMore, setShowMore] = useState(false);
-
-  const toggleShowMore = () => {};
 
   return (
     <div className="w-1/3 rounded-md border m-4 bg-white shadow-md">
@@ -23,14 +21,13 @@ const Post = ({ post }) => {
       </div>
       <div className="mt-2 px-2 pb-1">
         <p>
-          {showMore ? post.text : post.text.slice(0, 100)}
+          {showFullText ? post.text : post.text.slice(0, 100)}
           {post.text.length > 100 && (
             <button
-              type="button"
-              onClick={() => setShowMore(!showMore)}
-              className="cursor-pointer text-blue-500"
+              className="text-blue-500 hover:underline focus:outline-none"
+              onClick={() => setShowFullText(!showFullText)}
             >
-              {showMore ? " Show Less" : " Show More"}
+              {showFullText ? "Show Less" : "Show More"}
             </button>
           )}
         </p>
